@@ -9,23 +9,23 @@
 /* Begin PBXBuildFile section */
 		0F07B20F27DCC8A200042EF2 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07B20E27DCC8A200042EF2 /* LoginPresenter.swift */; };
 		0F07B21127DCCAA300042EF2 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07B21027DCCAA300042EF2 /* LoginModel.swift */; };
-		0F07B21427DCDC8700042EF2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F07B21327DCDC8700042EF2 /* SettingsViewController.swift */; };
 		0F90F6B327CFE612007CB856 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F90F6B227CFE612007CB856 /* AppDelegate.swift */; };
 		0F90F6B527CFE612007CB856 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F90F6B427CFE612007CB856 /* SceneDelegate.swift */; };
 		0F90F6B727CFE612007CB856 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F90F6B627CFE612007CB856 /* ViewController.swift */; };
 		0F90F6BA27CFE612007CB856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F90F6B827CFE612007CB856 /* Main.storyboard */; };
 		0F90F6BC27CFE615007CB856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F90F6BB27CFE615007CB856 /* Assets.xcassets */; };
 		0F90F6BF27CFE615007CB856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F90F6BD27CFE615007CB856 /* LaunchScreen.storyboard */; };
-		0F90F6C927CFF41E007CB856 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F90F6C827CFF41E007CB856 /* LoginViewController.swift */; };
 		491B3D9527F8ADE200DAE115 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491B3D9427F8ADE200DAE115 /* Settings.storyboard */; };
 		491B3D9727F8AE4000DAE115 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B3D9627F8AE4000DAE115 /* SettingsPresenter.swift */; };
 		491B3D9927F8AE8300DAE115 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491B3D9827F8AE8300DAE115 /* SettingsModel.swift */; };
+		49C6004F28074CFD0050EEC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C6004E28074CFD0050EEC2 /* LoginViewController.swift */; };
+		49C60051280761E90050EEC2 /* UITextField++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C60050280761E90050EEC2 /* UITextField++.swift */; };
+		49E8B8532801BFD900F8FEF6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8B8522801BFD900F8FEF6 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0F07B20E27DCC8A200042EF2 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		0F07B21027DCCAA300042EF2 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
-		0F07B21327DCDC8700042EF2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0F90F6AF27CFE612007CB856 /* SmartBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F90F6B227CFE612007CB856 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F90F6B427CFE612007CB856 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,10 +34,12 @@
 		0F90F6BB27CFE615007CB856 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F90F6BE27CFE615007CB856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0F90F6C027CFE615007CB856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0F90F6C827CFF41E007CB856 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		491B3D9427F8ADE200DAE115 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = "../../../../../../../../Agat/Desktop/לימודים/שנה ג/סדנה/SmartBox/SmartBox/Settings/Settings.storyboard"; sourceTree = "<group>"; };
 		491B3D9627F8AE4000DAE115 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsPresenter.swift; path = "../../../../../../../../Agat/Desktop/לימודים/שנה ג/סדנה/SmartBox/SmartBox/Settings/SettingsPresenter.swift"; sourceTree = "<group>"; };
 		491B3D9827F8AE8300DAE115 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsModel.swift; path = "../../../../../../../../Agat/Desktop/לימודים/שנה ג/סדנה/SmartBox/SmartBox/Settings/SettingsModel.swift"; sourceTree = "<group>"; };
+		49C6004E28074CFD0050EEC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "../../../../../../../../Agat/Desktop/לימודים/שנה ג/סדנה/SmartBox/SmartBox/Login/LoginViewController.swift"; sourceTree = "<group>"; };
+		49C60050280761E90050EEC2 /* UITextField++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UITextField++.swift"; path = "../../../../../../../Agat/Desktop/לימודים/שנה ג/סדנה/SmartBox/SmartBox/UITextField++.swift"; sourceTree = "<group>"; };
+		49E8B8522801BFD900F8FEF6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "../../../../../../../../Agat/Desktop/לימודים/שנה ג/סדנה/SmartBox/SmartBox/Settings/SettingsViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +56,7 @@
 		0F07B21227DCCAB000042EF2 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				0F90F6C827CFF41E007CB856 /* LoginViewController.swift */,
+				49C6004E28074CFD0050EEC2 /* LoginViewController.swift */,
 				0F07B20E27DCC8A200042EF2 /* LoginPresenter.swift */,
 				0F07B21027DCCAA300042EF2 /* LoginModel.swift */,
 			);
@@ -89,6 +91,7 @@
 				0F90F6BD27CFE615007CB856 /* LaunchScreen.storyboard */,
 				0F07B21227DCCAB000042EF2 /* Login */,
 				0F90F6C027CFE615007CB856 /* Info.plist */,
+				49C60050280761E90050EEC2 /* UITextField++.swift */,
 			);
 			path = SmartBox;
 			sourceTree = "<group>";
@@ -96,9 +99,9 @@
 		491B3D9327F8ADC300DAE115 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				0F07B21327DCDC8700042EF2 /* SettingsViewController.swift */,
 				491B3D9627F8AE4000DAE115 /* SettingsPresenter.swift */,
 				491B3D9427F8ADE200DAE115 /* Settings.storyboard */,
+				49E8B8522801BFD900F8FEF6 /* SettingsViewController.swift */,
 				491B3D9827F8AE8300DAE115 /* SettingsModel.swift */,
 			);
 			path = Settings;
@@ -177,14 +180,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				491B3D9927F8AE8300DAE115 /* SettingsModel.swift in Sources */,
-				0F90F6C927CFF41E007CB856 /* LoginViewController.swift in Sources */,
 				0F07B21127DCCAA300042EF2 /* LoginModel.swift in Sources */,
-				0F07B21427DCDC8700042EF2 /* SettingsViewController.swift in Sources */,
 				491B3D9727F8AE4000DAE115 /* SettingsPresenter.swift in Sources */,
 				0F90F6B727CFE612007CB856 /* ViewController.swift in Sources */,
 				0F90F6B327CFE612007CB856 /* AppDelegate.swift in Sources */,
+				49C60051280761E90050EEC2 /* UITextField++.swift in Sources */,
 				0F90F6B527CFE612007CB856 /* SceneDelegate.swift in Sources */,
+				49C6004F28074CFD0050EEC2 /* LoginViewController.swift in Sources */,
 				0F07B20F27DCC8A200042EF2 /* LoginPresenter.swift in Sources */,
+				49E8B8532801BFD900F8FEF6 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,6 +25,8 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.attachView(self)
+        loadingAnimation.stopAnimating()
+        loginButton.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,19 +42,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var userNameTextBox: UITextField!
     @IBOutlet var passwordTextBox: UITextField!
     @IBOutlet weak var loadingAnimation: UIActivityIndicatorView!
-    
-    
-    @IBAction func usernameTextBoxEdited(_ sender: UITextField) {
-        if !sender.state.isEmpty {
-            sender.textColor = .black
-        }
-    }
-    
-    @IBAction func passwordTextBoxEdited(_ sender: UITextField) {
-        if !sender.state.isEmpty {
-            sender.textColor = .black
-        }
-    }
+    @IBOutlet var loginButton: UIButton!
     
     func changeLoginButtonAvailability() {
         if !userNameTextBox.state.isEmpty && !passwordTextBox.state.isEmpty {
@@ -67,11 +57,11 @@ class LoginViewController: UIViewController {
         guard let username = userNameTextBox.text else { return }
         presenter.send(username: username, password: password)
         
-        let settingsVC = SettingsViewController()
+        let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
+        let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
         let presenterSettings = SettingsPresenter(with: settingsVC)
         settingsVC.presenter = presenterSettings
         navigationController?.pushViewController(settingsVC, animated: true)
-//        self.present(settingsVC, animated: true, completion: nil)
     }
 }
 
@@ -92,3 +82,4 @@ extension LoginViewController: AuthenticationErrorDelegate {
 //       self.view.backgroundColor = .yellow
 //    }
 //}
+

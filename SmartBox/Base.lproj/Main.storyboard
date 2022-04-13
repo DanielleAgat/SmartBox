@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ViewController-->
         <scene sceneID="Jpa-SY-dfd">
             <objects>
-                <viewController id="xK0-8i-YUp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" title="ViewController" id="xK0-8i-YUp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3iM-PH-Olz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,7 +49,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alu-BX-Npv">
-                                <rect key="frame" x="97" y="331" width="220" height="31"/>
+                                <rect key="frame" x="97" y="355" width="220" height="7"/>
                                 <size key="titleShadowOffset" width="1" height="2"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
@@ -88,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="892.75362318840587" y="66.964285714285708"/>
         </scene>
-        <!--Login View Controller-->
+        <!--LoginViewController-->
         <scene sceneID="k0l-kH-3UI">
             <objects>
-                <viewController storyboardIdentifier="Login" id="8cf-Zi-Kg0" customClass="LoginViewController" customModule="SmartBox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" title="LoginViewController" id="8cf-Zi-Kg0" customClass="LoginViewController" customModule="SmartBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mG3-g8-IVV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,12 +106,9 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Wuu-zx-eRr"/>
                                     <constraint firstAttribute="height" constant="50" id="o0u-37-I3E"/>
                                 </constraints>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="usernameTextBoxEdited:" destination="8cf-Zi-Kg0" eventType="editingDidBegin" id="DRG-6a-t79"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xhp-gv-m6s">
                                 <rect key="frame" x="50" y="377" width="300" height="50"/>
@@ -119,12 +116,9 @@
                                     <constraint firstAttribute="height" constant="50" id="CFi-M7-NSw"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="keT-N6-C1J"/>
                                 </constraints>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="passwordTextBoxEdited:" destination="8cf-Zi-Kg0" eventType="editingDidBegin" id="uIA-gE-Egs"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SmartBox" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="how-qO-4tw">
                                 <rect key="frame" x="93" y="124" width="228" height="128"/>
@@ -166,7 +160,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OtJ-nD-W3n"/>
-                        <color key="backgroundColor" red="0.9611172080039978" green="0.90805190801620483" blue="0.85728925466537476" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.90980392156862744" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Xhp-gv-m6s" firstAttribute="leading" secondItem="OtJ-nD-W3n" secondAttribute="leading" constant="50" id="0I9-lt-CRZ"/>
                             <constraint firstItem="OtJ-nD-W3n" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Xhp-gv-m6s" secondAttribute="trailing" id="4Dx-Qy-KpN"/>
@@ -185,6 +179,7 @@
                     <navigationItem key="navigationItem" id="ybo-cp-QBQ"/>
                     <connections>
                         <outlet property="loadingAnimation" destination="VpB-Lo-Fbv" id="Mxs-7c-EcM"/>
+                        <outlet property="loginButton" destination="9L1-0O-vR1" id="Ilt-NK-qpW"/>
                         <outlet property="passwordTextBox" destination="Xhp-gv-m6s" id="5Yp-We-med"/>
                         <outlet property="smartBoxLogo" destination="how-qO-4tw" id="qlN-mc-BLt"/>
                         <outlet property="userNameTextBox" destination="0uZ-vv-BH1" id="3xz-9z-lkz"/>
@@ -197,7 +192,7 @@
         <!--Navigation Controller-->
         <scene sceneID="e6d-tf-1lb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xtM-tH-5u7" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="xtM-tH-5u7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a4B-a5-dg7">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
