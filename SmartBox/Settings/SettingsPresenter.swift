@@ -7,23 +7,30 @@
 
 import Foundation
 
+protocol SettingsPresenterView: AnyObject {
+    func update(viewModel: SettingsViewModel)
+}
+
 class SettingsPresenter {
     private weak var view: SettingsViewController?
-    private let model: SettingsModel
+    private let viewModel: SettingsViewModel
+    private let settingsManager: SettingsManagerProtocol
     
-    init(view: SettingsViewController, model: SettingsModel) {
+    init(view: SettingsViewController, viewModel: SettingsViewModel, settingsManager: SettingsManagerProtocol) {
         self.view = view
-        self.model = model
+        self.viewModel = viewModel
+        self.settingsManager = settingsManager
     }
     
-    init(with view: SettingsViewController) {
+    init(with view: SettingsViewController, settingsManager: SettingsManagerProtocol) {
         self.view = view
-        self.model = SettingsModel()
+        self.viewModel = SettingsViewModel()
+        self.settingsManager = settingsManager
     }
     
     func attachView(_ view: SettingsViewController) {
         self.view = view
-//        self.view?.update(viewModel: viewModel)
+        self.view?.update(viewModel: viewModel)
     }
         
     func detachView() {
@@ -42,6 +49,7 @@ class SettingsPresenter {
     
     func connectToEbayAccount() -> String? {
         //TODO: open a webview with ebay sign in url
+        //TODO: Instead of returning the params, change them in the viewModel and trigger update(viewModel: viewModel)
         return "Agat"
     }
     
@@ -54,4 +62,86 @@ class SettingsPresenter {
         }
         return text
     }
+    
+    func saveInformationBeforeSubmit(boxID: String, threshold: String, productLink: String) {
+        var threshold = threshold
+        if threshold.hasSuffix("%") {
+            threshold.removeLast()
+        }
+        viewModel.threshold = Int(threshold)
+        viewModel.productLink = productLink
+        viewModel.isAccountConnected = true
+        viewModel.boxId = boxID
+//        viewModel.ebayAccount = ebayAccount
+    }
+    
+    func verifyEbayLink(link: String?) -> Bool {
+        guard let link = link else { return false}
+        
+        if link.hasPrefix("http://") || link.hasPrefix("https://") {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func verifyThreshold(threshold: String?) -> Bool {
+        guard var threshold = threshold else { return false }
+        if threshold.hasSuffix("%") {
+            threshold.removeLast()
+        }
+        guard  let thresholdInt = Int(threshold) else { return false }
+        
+        if thresholdInt <= 100 && thresholdInt >= 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func submit() {
+        guard let boxId = viewModel.boxId, let threshold =
+                viewModel.threshold, let productLink = viewModel.productLink else { return }
+        
+        let currentWeight = "100" // TODO: Change according to user's input
+        
+        settingsManager.updateSettingsInDB(boxId: boxId, currentWeight: currentWeight, threshold: String(threshold), productLink: productLink, success: {
+            GlobalManager.instance.userManager.getUserInfo(success: {
+                self.view?.openBoxStateViewController()
+            }, failure: { error, response in
+                Logger.instance.logEvent(type: .login, info: "getUserInfo failed")
+                if let responseObject = response {
+                    do {
+                        let data = try  JSONSerialization.data(withJSONObject: responseObject, options: [])
+                        if let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let err = response["error"] as? String {
+    //                        self.view?.showLoginFailedAlert(error: err )
+                        }
+                    } catch _ {
+    //                    self.view?.showLoginFailedAlert(error: error?.localizedDescription ?? "unkown error" )
+                    }
+                }
+            })
+        }, failure: { error, response in
+            Logger.instance.logEvent(type: .login, info: "updateSettingsInDB failed")
+            if let responseObject = response {
+                do {
+                    let data = try  JSONSerialization.data(withJSONObject: responseObject, options: [])
+                    if let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let err = response["error"] as? String {
+//                        self.view?.showLoginFailedAlert(error: err )
+                    }
+                } catch _ {
+//                    self.view?.showLoginFailedAlert(error: error?.localizedDescription ?? "unkown error" )
+                }
+            }
+        })
+    }
+    
+    func clearInformation() {
+        viewModel.threshold = nil
+        viewModel.productLink = nil
+        viewModel.boxId = nil
+        viewModel.isAccountConnected = false
+        viewModel.ebayAccount = false
+    }
+    
 }

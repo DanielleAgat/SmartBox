@@ -7,36 +7,61 @@
 
 import Foundation
 
-protocol PresenterView: AnyObject {
-    func updateLabel()
+protocol LoginPresenterView: AnyObject {
+    func update(viewModel: LoginViewModel)
 }
 
 class LoginPresenter {
     private weak var view: LoginViewController?
-    private let model: LoginModel
+    private let viewModel: LoginViewModel
+    private let loginManager: LoginManagerProtocol
     
-    init(view: LoginViewController, model: LoginModel) {
+    init(view: LoginViewController, viewModel: LoginViewModel, loginManager: LoginManagerProtocol) {
         self.view = view
-        self.model = model
-    }
-    
-    init(with view: LoginViewController) {
-        self.view = view
-        self.model = LoginModel()
+        self.viewModel = viewModel
+        self.loginManager = loginManager
     }
     
     func attachView(_ view: LoginViewController) {
         self.view = view
-//        self.view?.update(viewModel: viewModel)
+        self.view?.update(viewModel: viewModel)
     }
         
     func detachView() {
         self.view = nil
     }
     
-    func send(username: String, password: String) {
-        model.send(username: username, password: password)
+    func login(with username: String, and password: String) {
+        loginManager.getSignIn(username: username, password: password, success: {
+            Logger.instance.logEvent(type: .login, info: "getSignIn success")
+            GlobalManager.instance.userManager.userLoggedIn(email: username, password: password, success: {
+                Logger.instance.logEvent(type: .login, info: "getSignIn success, finished getUserInfo")
+                self.view?.openBoxStateViewController()
+            }, failure: { error, response in
+                Logger.instance.logEvent(type: .login, info: "getSignIn failed")
+                if let responseObject = response {
+                    do {
+                        let data = try  JSONSerialization.data(withJSONObject: responseObject, options: [])
+                        if let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let err = response["error"] as? String {
+                            self.view?.showLoginFailedAlert(error: err )
+                        }
+                    } catch _ {
+                        self.view?.showLoginFailedAlert(error: error?.localizedDescription ?? "unkown error" )
+                    }
+                }
+            })
+        }, failure: { error, response in
+            Logger.instance.logEvent(type: .login, info: "getSignIn failed")
+            if let responseObject = response {
+                do {
+                    let data = try  JSONSerialization.data(withJSONObject: responseObject, options: [])
+                    if let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let err = response["error"] as? String {
+                        self.view?.showLoginFailedAlert(error: err )
+                    }
+                } catch _ {
+                    self.view?.showLoginFailedAlert(error: error?.localizedDescription ?? "unkown error" )
+                }
+            }
+        })
     }
-    
-    
 }

@@ -1,25 +1,24 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  SmartBox
 //
-//  Created by agat levi on 02/03/2022.
+//  Created by Agat Levi on 11/05/2022.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     let presenter: MainPresenter = MainPresenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        presenter.view = self
+        presenter.view = self
         presenter.checkIfAlreadyLoggedIn()
     }
     
-//    @IBAction func signUpButton(_ sender: UIButton) {
-//        presenter.signup()
-//    }
-//
+    @IBAction func signupButtonTapped(_ sender: UIButton) {
+        presenter.signup()
+    }
     
     
     func openSignupViewController() {
@@ -31,9 +30,10 @@ class ViewController: UIViewController {
     }
     
     func openBoxStateViewController() {
-        guard let userVM = GlobalManager.instance.userManager.userViewModel, let boxId = userVM.boxId,
-            let threshold = userVM.boxBaseline,
-            let boxState = userVM.boxState
+        guard let userVM = GlobalManager.instance.userManager.userViewModel,
+                let boxId = userVM.boxId,
+                let threshold = userVM.boxBaseline,
+                let boxState = userVM.boxState
         else {
             Logger.instance.logEvent(type: .login, info: "openBoxStateVC failed because of an empty userVM")
             return
@@ -46,4 +46,5 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(boxStateVC, animated: true)
     }
 }
+
 

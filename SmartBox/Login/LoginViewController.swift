@@ -14,7 +14,7 @@ protocol AuthenticationErrorDelegate {
 class LoginViewController: UIViewController {
 
 //    var authenticatorError: AuthenticationErrorProtocol
-    lazy var presenter = LoginPresenter(with: self)
+    lazy var presenter = LoginPresenter(view: self, viewModel: LoginViewModel(), loginManager: GlobalManager.instance.loginManager)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,13 +55,44 @@ class LoginViewController: UIViewController {
         sender.isHidden = true
         guard let password = passwordTextBox.text else { return }
         guard let username = userNameTextBox.text else { return }
-        presenter.send(username: username, password: password)
+        if !username.isValidEmail() {
+            let okAction = UIAlertAction(title: "Let me fix it", style: .default, handler: nil)
+            showAlertViewController(title: "Invalid input", message: "Your email looks fishy, are you sure it is correct?", actions: [okAction], animated: true, completion: {
+                self.loadingAnimation.stopAnimating()
+                self.loginButton.isHidden = false
+            })
+            return
+        }
+        presenter.login(with: username, and: password)
+    }
+    
+    func openBoxStateViewController(){
+        //TODO: Remove the commented boxState's condition after Dor fixes the getInfo !!!!
+        let boxState = "30"
         
-        let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
-        let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
-        let presenterSettings = SettingsPresenter(with: settingsVC)
-        settingsVC.presenter = presenterSettings
-        navigationController?.pushViewController(settingsVC, animated: true)
+        Logger.instance.logEvent(type: .login, info: "openBoxStateVC  triggered")
+        guard let userVM = GlobalManager.instance.userManager.userViewModel, let boxId = userVM.boxId,
+            let threshold = userVM.boxBaseline
+//            let boxState = userVM.boxState
+        else {
+            Logger.instance.logEvent(type: .login, info: "openBoxStateVC failed because of an empty userVM")
+            return
+        }
+        let boxStateStoryboard = UIStoryboard(name: "BoxState", bundle: nil)
+        let boxStateVC = boxStateStoryboard.instantiateViewController(withIdentifier: "BoxState") as! BoxStateViewController
+        let boxStatePresenter = BoxStatePresenter(viewModel: BoxStateViewModel(boxID: boxId, boxState: boxState, threshold: threshold), view: boxStateVC)
+        boxStateVC.presenter = boxStatePresenter
+        Logger.instance.logEvent(type: .login, info: "openBoxStateVC: presenter  created!")
+        navigationController?.pushViewController(boxStateVC, animated: true)
+    }
+    
+    func showLoginFailedAlert(error: String) {
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        showAlertViewController(title: "Login failed", message: error, actions: [okAction], animated: true, completion: {
+            self.loadingAnimation.stopAnimating()
+            self.loginButton.isHidden = false
+        })
+        return
     }
 }
 
@@ -76,10 +107,10 @@ extension LoginViewController: AuthenticationErrorDelegate {
     }
 }
 
-//extension LoginViewController: PresenterView {
-//    func update(viewModel: LoginViewModel) {
+extension LoginViewController: LoginPresenterView {
+    func update(viewModel: LoginViewModel) {
 //       changeTextLabel.text = "I have been changed!"
 //       self.view.backgroundColor = .yellow
-//    }
-//}
+    }
+}
 
