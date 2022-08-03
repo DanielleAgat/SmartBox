@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
         guard let userVM = GlobalManager.instance.userManager.userViewModel,
                 let boxId = userVM.boxId,
                 let threshold = userVM.boxBaseline,
-                let boxState = userVM.boxState
+                let currentWeight = userVM.currentWeight
         else {
             Logger.instance.logEvent(type: .login, info: "openBoxStateVC failed because of an empty userVM")
             return
@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
         
         let boxStateStoryboard = UIStoryboard(name: "BoxState", bundle: nil)
         let boxStateVC = boxStateStoryboard.instantiateViewController(withIdentifier: "BoxState") as! BoxStateViewController
-        let boxStatePresenter = BoxStatePresenter(viewModel: BoxStateViewModel(boxID: boxId, boxState: boxState, threshold: threshold), view: boxStateVC)
+        let boxStatePresenter = BoxStatePresenter(viewModel: BoxStateViewModel(boxID: boxId, currentWeight: currentWeight, threshold: threshold), view: boxStateVC)
         boxStateVC.presenter = boxStatePresenter
         navigationController?.pushViewController(boxStateVC, animated: true)
     }

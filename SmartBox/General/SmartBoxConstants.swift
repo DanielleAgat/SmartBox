@@ -11,10 +11,8 @@ struct ConstantsAPI {
     static let tPassword = "password"
     static let tEmail = "email"
     static let tBoxId = "box_id"
-    static let tBoxState = "box_state"
-    static let tEbayConnection = "ebay_connection"
-    static let tBoxThreshold = "box_baseline"
-    static let tCurrentWeight = "box_current_weight"
+    static let tCurrentWeight = "current_weight"
+    static let tBoxThreshold = "baseline"
     static let tAmazonLink = "amazon_link"
     
 }
@@ -31,5 +29,5 @@ struct ConstantsTitles {
 }
 
 struct AppConstParams {
-    static let baseUrl = "https://smart-box-tlv.herokuapp.com"
+    static let baseUrl = "https://smart-box-com.herokuapp.com"
 }

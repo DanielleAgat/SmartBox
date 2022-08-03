@@ -9,6 +9,6 @@ import Foundation
 
 struct BoxStateViewModel {
     let boxID: String
-    let boxState: String
+    let currentWeight: String
     let threshold: String
 }
