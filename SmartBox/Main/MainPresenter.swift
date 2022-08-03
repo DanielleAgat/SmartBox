@@ -12,9 +12,13 @@ class MainPresenter {
     var view: MainViewController?
     
     func checkIfAlreadyLoggedIn() {
-        if GlobalManager.instance.userManager.userViewModel != nil {
-            Logger.instance.logEvent(type: .login, info: "user is already  logger in")
-            view?.openBoxStateViewController()
+        if let username = UserDefaults.standard.string(forKey: ConstantsTitles.email), let password = UserDefaults.standard.string(forKey: ConstantsTitles.password) {
+            Logger.instance.logEvent(type: .login, info: "user is already logged in")
+            GlobalManager.instance.userManager.userLoggedIn(email: username, password: password, success: { [weak self] in
+                self?.view?.openBoxStateViewController()
+            }, failure: { [weak self] error,response in
+                Logger.instance.logEvent(type: .login, info: "user isn't logged in yet")
+            })
         }
     }
     

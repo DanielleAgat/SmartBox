@@ -45,6 +45,8 @@ class UserManager: UserManagerProtocol {
     
     func logout() {
         userViewModel = nil
+        UserDefaults.standard.removeObject(forKey: ConstantsTitles.email)
+        UserDefaults.standard.removeObject(forKey: ConstantsTitles.password)
     }
     
     func userSignedUp(email: String, password: String) {
