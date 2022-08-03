@@ -55,6 +55,10 @@ class SettingsViewController: UIViewController {
         presenter.setSubmitAvailability()
     }
     
+    @IBAction func currentWeightTextBoxEdited(_ sender: Any) {
+        presenter.setSubmitAvailability()
+    }
+    
     @IBAction func ebayLinkTextBoxEdited(_ sender: UITextField) {
         presenter.setSubmitAvailability()
     }
