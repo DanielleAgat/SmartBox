@@ -45,8 +45,8 @@ class SignupViewController: UIViewController {
         passwordInvalid.isHidden = true
         guard let username = usernameTextbox.text else { return }
         if !username.isValidEmail() {
-            let okAction = UIAlertAction(title: "Let me fix it", style: .default, handler: nil)
-            showAlertViewController(title: "Invalid input", message: "Your email looks fishy, are you sure it is correct?", actions: [okAction], animated: true, completion: {
+            let okAction = UIAlertAction(title: Strings.letMeFixItButton, style: .default, handler: nil)
+            showAlertViewController(title: Strings.invalidInput, message: Strings.invalidEmailMessage, actions: [okAction], animated: true, completion: {
                 self.loadinAnimation.stopAnimating()
                 self.signupButton.isHidden = false
             })
@@ -73,16 +73,16 @@ class SignupViewController: UIViewController {
     }
     
     func openSettingsViewController(){
-        let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
-        let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
+        let settingsStoryboard = UIStoryboard(name: StoryBoards.settings, bundle: nil)
+        let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: StoryBoards.settings) as! SettingsViewController
         let presenterSettings = SettingsPresenter(with: settingsVC, settingsManager: GlobalManager.instance.settingsManager)
         settingsVC.presenter = presenterSettings
         navigationController?.pushViewController(settingsVC, animated: true)
     }
     
     func showSignupFailedAlert(error: String) {
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        showAlertViewController(title: "Signup failed", message: error, actions: [okAction], animated: true, completion: {
+        let okAction = UIAlertAction(title: Strings.popUpConfirmation, style: .default, handler: nil)
+        showAlertViewController(title: Strings.signupFailedTitle, message: error, actions: [okAction], animated: true, completion: {
             self.loadinAnimation.stopAnimating()
             self.signupButton.isHidden = false
         })

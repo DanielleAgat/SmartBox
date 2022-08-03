@@ -12,6 +12,11 @@ protocol SettingsPresenterView: AnyObject {
 }
 
 class SettingsPresenter {
+    struct httpPrefix {
+        static let http = "http://"
+        static let https = "https://"
+    }
+    
     private weak var view: SettingsViewController?
     private let viewModel: SettingsViewModel
     private let settingsManager: SettingsManagerProtocol
@@ -47,16 +52,6 @@ class SettingsPresenter {
         }
     }
     
-    func setAccountButtonText() -> String {
-        var text: String
-        if let name = view?.ebayUserName {
-            text = name.appending(SettingsViewController.titles.isConnected)
-        } else {
-            text = SettingsViewController.titles.accountDisconnected
-        }
-        return text
-    }
-    
     func saveInformationBeforeSubmit(boxID: String, threshold: String, currentWeight: String, productLink: String) {
         var threshold = threshold
         if threshold.hasSuffix("%") {
@@ -71,7 +66,7 @@ class SettingsPresenter {
     func verifyEbayLink(link: String?) -> Bool {
         guard let link = link else { return false}
         
-        if link.hasPrefix("http://") || link.hasPrefix("https://") {
+        if link.hasPrefix(httpPrefix.http) || link.hasPrefix(httpPrefix.https) {
             return true
         } else {
             return false
@@ -106,7 +101,7 @@ class SettingsPresenter {
                 if let responseObject = response {
                     do {
                         let data = try  JSONSerialization.data(withJSONObject: responseObject, options: [])
-                        if let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let err = response["error"] as? String {
+                        if let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let _ = response["error"] as? String {
     //                        self.view?.showLoginFailedAlert(error: err )
                         }
                     } catch _ {
@@ -119,7 +114,7 @@ class SettingsPresenter {
             if let responseObject = response {
                 do {
                     let data = try  JSONSerialization.data(withJSONObject: responseObject, options: [])
-                    if let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let err = response["error"] as? String {
+                    if let response = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let _ = response["error"] as? String {
 //                        self.view?.showLoginFailedAlert(error: err )
                     }
                 } catch _ {

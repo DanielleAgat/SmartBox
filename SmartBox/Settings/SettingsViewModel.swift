@@ -12,8 +12,7 @@ class SettingsViewModel {
     let boxIdTitleText: String
     let ThresholdTitleText: String
     let currentWeightTitleText: String
-    let ebayProductLinkTitleText: String
-    let ebayAccountTitleText: String
+    let productLinkTitleText: String
     let submitButtonText: String
     
     //Values:
@@ -23,12 +22,11 @@ class SettingsViewModel {
     var productLink: String?
     
     init() {
-        boxIdTitleText = "Box ID"
-        ThresholdTitleText = "Threshold"
-        currentWeightTitleText = "Current Weight"
-        ebayProductLinkTitleText = "product link"
-        ebayAccountTitleText = "eBay account"
-        submitButtonText = "Submit"
+        boxIdTitleText = ConstantsTitles.boxID
+        ThresholdTitleText = ConstantsTitles.threshold
+        currentWeightTitleText = ConstantsTitles.currentWeight
+        productLinkTitleText = ConstantsTitles.productLink
+        submitButtonText = Strings.submitButton
     }
     
 }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 extension String {
     func isValidEmail() -> Bool {
         if self.contains("@") && self.contains("."){

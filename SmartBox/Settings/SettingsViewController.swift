@@ -12,11 +12,6 @@ protocol SettingsViewControllerProtocol {
 }
 
 class SettingsViewController: UIViewController {
-    
-    enum titles {
-        static let accountDisconnected = "Connect to eBay account"
-        static let isConnected = " is connected"
-    }
 
     var presenter: SettingsPresenter!
     var ebayUserName: String?
@@ -26,7 +21,6 @@ class SettingsViewController: UIViewController {
     @IBOutlet var thresholdTextBox: UITextField!
     @IBOutlet var currentWeightTextBox: UITextField!
     @IBOutlet var ebayLinkTextBox: UITextField!
-    
     @IBOutlet var checkmarkSuccess: UIImageView!
     
     //Labels:
@@ -67,14 +61,14 @@ class SettingsViewController: UIViewController {
     
     @IBAction func submitButtonTapped(_ sender: UIButton) {
         if !presenter.verifyEbayLink(link: ebayLinkTextBox.text) || !presenter.verifyThreshold(threshold: thresholdTextBox.text) {
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            showAlertViewController(title: "Invalid input", message: "Are you sure this is the correct link? \nIs your threshold is between 0-100 ? Please fix and try again !", actions: [okAction], animated: true, completion: nil)
+            let okAction = UIAlertAction(title: Strings.popUpConfirmation, style: .default, handler: nil)
+            showAlertViewController(title: Strings.invalidInput, message: Strings.invalidLinkMessage , actions: [okAction], animated: true, completion: nil)
             return
         }
         
         guard let boxId = boxIdTextBox.text, let threshold = thresholdTextBox.text, let currentWeight = currentWeightTextBox.text, let productLink = ebayLinkTextBox.text else {
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            showAlertViewController(title: "Missing fields", message: "One or more fields are missing!\nPlease fill it before you continue.", actions: [okAction], animated: true, completion: nil)
+            let okAction = UIAlertAction(title: Strings.popUpConfirmation, style: .default, handler: nil)
+            showAlertViewController(title: Strings.missingFieldsTitle, message: Strings.missingFieldsMessage, actions: [okAction], animated: true, completion: nil)
             return
         }
         presenter.saveInformationBeforeSubmit(boxID: boxId, threshold: threshold, currentWeight: currentWeight, productLink: productLink)
@@ -96,8 +90,8 @@ class SettingsViewController: UIViewController {
             Logger.instance.logEvent(type: .login, info: "openBoxStateVC failed because of an empty userVM")
             return
         }
-        let boxStateStoryboard = UIStoryboard(name: "BoxState", bundle: nil)
-        let boxStateVC = boxStateStoryboard.instantiateViewController(withIdentifier: "BoxState") as! BoxStateViewController
+        let boxStateStoryboard = UIStoryboard(name: StoryBoards.boxState, bundle: nil)
+        let boxStateVC = boxStateStoryboard.instantiateViewController(withIdentifier: StoryBoards.boxState) as! BoxStateViewController
         let boxStatePresenter = BoxStatePresenter(viewModel: BoxStateViewModel(boxID: boxId, currentWeight: currentWeight, threshold: threshold), view: boxStateVC)
         boxStateVC.presenter = boxStatePresenter
         navigationController?.pushViewController(boxStateVC, animated: true)
@@ -111,7 +105,7 @@ extension SettingsViewController: SettingsViewControllerProtocol {
         boxIdLabel.text = viewModel.boxIdTitleText
         thresholdLabel.text = viewModel.ThresholdTitleText
         currentWeightLabel.text = viewModel.currentWeightTitleText
-        ebayLinkLabel.text = viewModel.ebayProductLinkTitleText
+        ebayLinkLabel.text = viewModel.productLinkTitleText
         submitButton.titleLabel?.text = viewModel.submitButtonText
         
         //values:
