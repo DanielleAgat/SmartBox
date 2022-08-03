@@ -17,7 +17,7 @@ class BoxStateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Strings.logoutMenuItem, style: .plain, target: self, action: #selector(logoutTapped))
     }
     
     override func viewWillAppear(_ animated: Bool) {

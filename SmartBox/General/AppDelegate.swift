@@ -15,9 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: StoryBoards.main, bundle: nil)
 
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "Login") as? LoginViewController
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: StoryBoards.login) as? LoginViewController
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
 

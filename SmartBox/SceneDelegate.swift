@@ -22,8 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.windowScene = sceneWindow
             window?.makeKeyAndVisible()
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let navigationController = storyboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController {
+        let storyboard = UIStoryboard(name: StoryBoards.main, bundle: nil)
+        if let navigationController = storyboard.instantiateViewController(withIdentifier: StoryBoards.navigationController) as? UINavigationController {
             window?.rootViewController = navigationController
         }
         

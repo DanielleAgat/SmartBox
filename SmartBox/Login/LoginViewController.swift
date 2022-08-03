@@ -53,8 +53,8 @@ class LoginViewController: UIViewController {
         sender.isHidden = true
         guard let password = passwordTextBox.text, let username = userNameTextBox.text?.lowercased() else { return }
         if !username.isValidEmail() {
-            let okAction = UIAlertAction(title: "Let me fix it", style: .default, handler: nil)
-            showAlertViewController(title: "Invalid input", message: "Your email looks fishy, are you sure it is correct?", actions: [okAction], animated: true, completion: {
+            let okAction = UIAlertAction(title: Strings.letMeFixItButton, style: .default, handler: nil)
+            showAlertViewController(title: Strings.invalidInput, message: Strings.invalidEmailMessage, actions: [okAction], animated: true, completion: {
                 self.loadingAnimation.stopAnimating()
                 self.loginButton.isHidden = false
             })
@@ -64,8 +64,8 @@ class LoginViewController: UIViewController {
     }
     
     func openSettingsViewController() {
-        let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
-        let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
+        let settingsStoryboard = UIStoryboard(name: StoryBoards.settings, bundle: nil)
+        let settingsVC = settingsStoryboard.instantiateViewController(withIdentifier: StoryBoards.settings) as! SettingsViewController
         let presenterSettings = SettingsPresenter(with: settingsVC, settingsManager: GlobalManager.instance.settingsManager)
         settingsVC.presenter = presenterSettings
         navigationController?.pushViewController(settingsVC, animated: true)
@@ -73,16 +73,16 @@ class LoginViewController: UIViewController {
     }
     
     func showMissingConfigurationAlert() {
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+        let okAction = UIAlertAction(title: Strings.popUpConfirmation, style: .default, handler: { [weak self] _ in
             self?.openSettingsViewController()
         })
-        showAlertViewController(title: "Missing configuration", message: "Your box's information is not configured yet. Please fill the information in order to enjoy our service", actions: [okAction], animated: true, completion: { [weak self] in
+        showAlertViewController(title: Strings.missingFieldsTitle, message: Strings.missingFieldsMessage, actions: [okAction], animated: true, completion: { [weak self] in
             self?.loadingAnimation.stopAnimating()
         })
     }
     
     func openBoxStateViewController(){
-        Logger.instance.logEvent(type: .login, info: "openBoxStateVC  triggered")
+        Logger.instance.logEvent(type: .login, info: "openBoxStateVC triggered")
         guard let userVM = GlobalManager.instance.userManager.userViewModel, let boxId = userVM.boxId,
             let threshold = userVM.boxBaseline,
             let currentWeight = userVM.currentWeight
@@ -90,8 +90,8 @@ class LoginViewController: UIViewController {
             Logger.instance.logEvent(type: .login, info: "openBoxStateVC failed because of an empty userVM")
             return
         }
-        let boxStateStoryboard = UIStoryboard(name: "BoxState", bundle: nil)
-        let boxStateVC = boxStateStoryboard.instantiateViewController(withIdentifier: "BoxState") as! BoxStateViewController
+        let boxStateStoryboard = UIStoryboard(name: StoryBoards.boxState, bundle: nil)
+        let boxStateVC = boxStateStoryboard.instantiateViewController(withIdentifier: StoryBoards.boxState) as! BoxStateViewController
         let boxStatePresenter = BoxStatePresenter(viewModel: BoxStateViewModel(boxID: boxId, currentWeight: currentWeight, threshold: threshold), view: boxStateVC)
         boxStateVC.presenter = boxStatePresenter
         Logger.instance.logEvent(type: .login, info: "openBoxStateVC: presenter  created!")
@@ -99,8 +99,8 @@ class LoginViewController: UIViewController {
     }
     
     func showLoginFailedAlert(error: String) {
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        showAlertViewController(title: "Login failed", message: error, actions: [okAction], animated: true, completion: {
+        let okAction = UIAlertAction(title: Strings.popUpConfirmation, style: .default, handler: nil)
+        showAlertViewController(title: Strings.loginFailedTitle, message: error, actions: [okAction], animated: true, completion: {
             self.loadingAnimation.stopAnimating()
             self.loginButton.isHidden = false
         })
@@ -112,7 +112,7 @@ extension LoginViewController: AuthenticationErrorDelegate {
     func userNameAuthenticationError(title: String, description: String) {
         DispatchQueue.main.async {
             let alertController = UIAlertController(title: title, message: description, preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            let defaultAction = UIAlertAction(title: Strings.popUpConfirmation, style: .default, handler: nil)
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
         }
@@ -121,8 +121,7 @@ extension LoginViewController: AuthenticationErrorDelegate {
 
 extension LoginViewController: LoginPresenterView {
     func update(viewModel: LoginViewModel) {
-//       changeTextLabel.text = "I have been changed!"
-//       self.view.backgroundColor = .yellow
+
     }
 }
 
