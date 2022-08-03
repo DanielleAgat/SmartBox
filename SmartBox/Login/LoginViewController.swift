@@ -31,10 +31,6 @@ class LoginViewController: UIViewController {
         super.viewWillDisappear(animated)
         presenter.detachView()
     }
-    
-    deinit {
-//        authenticatorError.delegate -= self
-    }
 
     @IBOutlet var smartBoxLogo: UILabel!
     @IBOutlet var userNameTextBox: UITextField!
@@ -44,7 +40,7 @@ class LoginViewController: UIViewController {
     
     func changeLoginButtonAvailability() {
         if !userNameTextBox.state.isEmpty && !passwordTextBox.state.isEmpty {
-            //TODO: Change login button to enabled
+            loginButton.isEnabled = true
         }
     }
     
