@@ -40,6 +40,7 @@ class SettingsViewController: UIViewController {
         presenter.setSubmitAvailability()
         submitButton.isHidden = false
         checkmarkSuccess.isHidden = true
+        navigationItem.title = nil
     }
     
     override func viewWillDisappear(_ animated: Bool) {
