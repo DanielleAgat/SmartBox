@@ -7,16 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8DC427B7-7CFD-46C2-8E43-BBABEA8490C8"
+            uuid = "57CC63DC-7ACA-40F5-B18E-71CA432EB876"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SmartBox/Login/LoginPresenter.swift"
+            filePath = "../../../../../../Agat/Desktop/&#x5dc;&#x5d9;&#x5de;&#x5d5;&#x5d3;&#x5d9;&#x5dd;/&#x5e9;&#x5e0;&#x5d4; &#x5d2;/&#x5e1;&#x5d3;&#x5e0;&#x5d4;/SmartBox/SmartBox/Settings/SettingsPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "login(with:and:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "setSubmitAvailability()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6C7FB63E-77E0-463C-89AF-AF188E54AB2F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../../Agat/Desktop/&#x5dc;&#x5d9;&#x5de;&#x5d5;&#x5d3;&#x5d9;&#x5dd;/&#x5e9;&#x5e0;&#x5d4; &#x5d2;/&#x5e1;&#x5d3;&#x5e0;&#x5d4;/SmartBox/SmartBox/Settings/SettingsPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "setSubmitAvailability()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

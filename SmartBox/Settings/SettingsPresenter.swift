@@ -45,7 +45,7 @@ class SettingsPresenter {
     func setSubmitAvailability() {
         guard let view = view else { return }
         
-        if !view.boxIdTextBox.hasText && !view.thresholdTextBox.hasText && !view.ebayLinkTextBox.hasText && !view.currentWeightTextBox.hasText {
+        if view.boxIdTextBox.hasText && view.thresholdTextBox.hasText && view.ebayLinkTextBox.hasText && view.currentWeightTextBox.hasText {
             view.setSubmitButton(enabled: true)
         } else {
             view.setSubmitButton(enabled: false)

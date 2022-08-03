@@ -89,6 +89,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
+                                                    <action selector="currentWeightTextBoxEdited:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="LkA-PP-FdY"/>
                                                     <action selector="thresholdTextBoxEdited:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="WcM-C5-DYb"/>
                                                 </connections>
                                             </textField>
