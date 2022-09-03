@@ -8,7 +8,7 @@
 import Foundation
 
 struct BoxStateViewModel {
-    let boxID: String
-    let currentWeight: String
-    let threshold: String
+    let boxID: Int
+    let currentWeight: Double
+    let threshold: Double
 }

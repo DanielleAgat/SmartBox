@@ -20,6 +20,7 @@ class BoxStateViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: Strings.logoutMenuItem, style: .plain, target: self, action: #selector(logoutTapped))
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.title = nil
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,9 +45,9 @@ class BoxStateViewController: UIViewController {
 
 extension BoxStateViewController {
     func update(viewModel: BoxStateViewModel) {
-        boxThresholdInfo.text = viewModel.threshold + "%"
-        boxStateInfo.text = viewModel.currentWeight
-        boxIdInfo.text = viewModel.boxID
+        boxThresholdInfo.text = String(viewModel.threshold) + "%"
+        boxStateInfo.text = String(viewModel.currentWeight)
+        boxIdInfo.text = String(viewModel.boxID)
         view.layoutIfNeeded()
     }
 }

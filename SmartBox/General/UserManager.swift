@@ -16,10 +16,10 @@ protocol UserManagerProtocol {
 }
 
 struct UserInfoResponse: Codable {
-    let boxId: String
-    let currentWeight: String
-    let boxBaseline: String
-    let maxWeight: String
+    let boxId: Int
+    let currentWeight: Double
+    let boxBaseline: Double
+    let maxWeight: Double
     let amazonLink: String?
     
     private enum CodingKeys: String, CodingKey {

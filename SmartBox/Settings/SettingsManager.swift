@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SettingsManagerProtocol {
-    func updateSettingsInDB(boxId: String, currentWeight: String, threshold: String, productLink: String, success:@escaping () -> Void, failure:@escaping (_ error:Error?, _ response: AnyObject?) -> Void)
+    func updateSettingsInDB(boxId: Int, currentWeight: Double, threshold: Double, productLink: String, success:@escaping () -> Void, failure:@escaping (_ error:Error?, _ response: AnyObject?) -> Void)
 }
 
 class SettingsManager: SettingsManagerProtocol {
@@ -22,7 +22,7 @@ class SettingsManager: SettingsManagerProtocol {
         self.sessionManager = sessionManager
     }
     
-    func updateSettingsInDB(boxId: String, currentWeight: String, threshold: String, productLink: String, success:@escaping () -> Void, failure:@escaping (_ error:Error?, _ response: AnyObject?) -> Void){
+    func updateSettingsInDB(boxId: Int, currentWeight: Double, threshold: Double, productLink: String, success:@escaping () -> Void, failure:@escaping (_ error:Error?, _ response: AnyObject?) -> Void){
         
         if URL(urlString: GlobalManager.instance.baseUrl) == nil { return }
         guard let email = GlobalManager.instance.userManager.userViewModel?.email else { return }

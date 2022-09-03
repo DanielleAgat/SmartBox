@@ -10,13 +10,13 @@ import Foundation
 struct UserViewModel {
     let email: String
     let password: String
-    let boxId: String?
+    let boxId: Int?
     let productLink: String?
-    let maxWeight: String?
-    let currentWeight: String?
-    let boxBaseline: String?
+    let maxWeight: Double?
+    let currentWeight: Double?
+    let boxBaseline: Double?
     
-    init(email: String, password: String, boxId: String? = nil, productLink: String? = nil, maxWeight: String? = nil, currentWeight: String? = nil, boxBaseline: String? =  nil) {
+    init(email: String, password: String, boxId: Int? = nil, productLink: String? = nil, maxWeight: Double? = nil, currentWeight: Double? = nil, boxBaseline: Double? =  nil) {
         self.email = email
         self.password = password
         self.boxId = boxId
@@ -24,6 +24,6 @@ struct UserViewModel {
         self.currentWeight = currentWeight
         self.boxBaseline = boxBaseline
         self.maxWeight = maxWeight
-        Logger.instance.logEvent(type: .login, info: "userViewModel initialized. \nemail: \(self.email) \nbox ID: \(String(describing: self.boxId))\nbox state: \(self.currentWeight)\nbox threshold: \(self.boxBaseline)  ")
+        Logger.instance.logEvent(type: .login, info: "userViewModel initialized. \nemail: \(self.email) \nbox ID: \(String(describing: self.boxId))\nbox state: \(String(describing: self.currentWeight))\nbox threshold: \(self.boxBaseline)  ")
     }
 }

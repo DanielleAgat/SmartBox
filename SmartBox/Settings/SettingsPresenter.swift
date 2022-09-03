@@ -57,10 +57,11 @@ class SettingsPresenter {
         if threshold.hasSuffix("%") {
             threshold.removeLast()
         }
-        viewModel.threshold = Int(threshold)
+        
+        viewModel.threshold = Double(threshold)
         viewModel.productLink = productLink
-        viewModel.boxId = boxID
-        viewModel.currentWeight = currentWeight
+        viewModel.boxId = Int(boxID)
+        viewModel.currentWeight = Double(currentWeight)
     }
     
     func verifyEbayLink(link: String?) -> Bool {
@@ -78,7 +79,7 @@ class SettingsPresenter {
         if threshold.hasSuffix("%") {
             threshold.removeLast()
         }
-        guard  let thresholdInt = Int(threshold) else { return false }
+        guard  let thresholdInt = Double(threshold) else { return false }
         
         if thresholdInt <= 100 && thresholdInt >= 0 {
             return true
@@ -91,7 +92,7 @@ class SettingsPresenter {
         guard let boxId = viewModel.boxId, let threshold =
                 viewModel.threshold, let productLink = viewModel.productLink, let currentWeight = viewModel.currentWeight else { return }
         
-        settingsManager.updateSettingsInDB(boxId: boxId, currentWeight: currentWeight, threshold: String(threshold), productLink: productLink, success: {
+        settingsManager.updateSettingsInDB(boxId: Int(boxId), currentWeight: Double(currentWeight), threshold: Double(threshold), productLink: productLink, success: {
             Logger.instance.logEvent(type: .login, info: "updateSettingsInDB success")
             GlobalManager.instance.userManager.getUserInfo(success: {
                 Logger.instance.logEvent(type: .login, info: "getUserInfo success")

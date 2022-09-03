@@ -16,9 +16,9 @@ class SettingsViewModel {
     let submitButtonText: String
     
     //Values:
-    var boxId: String?
-    var threshold: Int?
-    var currentWeight: String?
+    var boxId: Int?
+    var threshold: Double?
+    var currentWeight: Double?
     var productLink: String?
     
     init() {

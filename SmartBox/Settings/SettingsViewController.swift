@@ -14,7 +14,6 @@ protocol SettingsViewControllerProtocol {
 class SettingsViewController: UIViewController {
 
     var presenter: SettingsPresenter!
-    var ebayUserName: String?
 
     @IBOutlet var submitButton: UIButton!
     @IBOutlet var boxIdTextBox: UITextField!
@@ -32,6 +31,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,13 +114,25 @@ extension SettingsViewController: SettingsViewControllerProtocol {
         submitButton.titleLabel?.text = viewModel.submitButtonText
         
         //values:
-        boxIdTextBox.text = viewModel.boxId
+        boxIdTextBox.text = String(viewModel.boxId)
         if let threshold = viewModel.threshold {
             thresholdTextBox.text = String(threshold)
         } else {
             thresholdTextBox.text = ""
         }
         ebayLinkTextBox.text = viewModel.productLink
-        currentWeightTextBox.text = viewModel.currentWeight
+        currentWeightTextBox.text = String(viewModel.currentWeight)
+    }
+}
+
+extension String {
+    init?(_ value: Int?) {
+        guard let value = value else { return nil }
+        self.init(value)
+    }
+    
+    init?(_ value: Double?) {
+        guard let value = value else { return nil }
+        self.init(value)
     }
 }
