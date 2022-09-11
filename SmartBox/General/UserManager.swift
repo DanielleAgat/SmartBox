@@ -45,6 +45,12 @@ class UserManager: UserManagerProtocol {
     
     func logout() {
         userViewModel = nil
+        deleteUserDefaults()
+    }
+    
+    private func deleteUserDefaults() {
+        GlobalManager.instance.defaults.set(nil, forKey: "username")
+        GlobalManager.instance.defaults.set(nil, forKey: "password")
     }
     
     func userSignedUp(email: String, password: String) {

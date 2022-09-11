@@ -13,6 +13,7 @@ class GlobalManager {
     let settingsManager: SettingsManagerProtocol
     var userManager: UserManagerProtocol
     let baseUrl: String
+    let defaults: UserDefaults
     
     private init() {
         sessionManager = SMARTBOXHTTPSessionManager()
@@ -20,6 +21,7 @@ class GlobalManager {
         settingsManager = SettingsManager(sessionManager: sessionManager)
         userManager = UserManager(sessionManager: sessionManager)
         baseUrl = AppConstParams.baseUrl
+        defaults = UserDefaults.standard
     }
     
     static let instance = GlobalManager()
