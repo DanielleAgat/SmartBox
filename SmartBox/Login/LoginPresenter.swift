@@ -34,8 +34,9 @@ class LoginPresenter {
     func login(with username: String, and password: String) {
         loginManager.getSignIn(username: username, password: password, success: { [weak self] in
             Logger.instance.logEvent(type: .login, info: "getSignIn success")
-            GlobalManager.instance.userManager.userLoggedIn(email: username, password: password, success: {
+            GlobalManager.instance.userManager.userLoggedIn(email: username, password: password, success: { [weak self] in
                 Logger.instance.logEvent(type: .login, info: "userLoggedIn success, finished getUserInfo")
+                self?.saveLoginUserToDevice(username: username, password: password)
                 self?.view?.openBoxStateViewController()
             }, failure: { [weak self] error, response in
                 Logger.instance.logEvent(type: .login, info: "userLoggedIn failed")
@@ -65,6 +66,11 @@ class LoginPresenter {
                 }
             }
         })
+    }
+    
+    private func saveLoginUserToDevice(username: String, password: String) {
+        GlobalManager.instance.defaults.set(username, forKey: "username")
+        GlobalManager.instance.defaults.set(password, forKey: "password")
     }
     
     private func loginFailedBecauseOfMissingConfiguration() {
