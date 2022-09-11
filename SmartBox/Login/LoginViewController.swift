@@ -32,22 +32,12 @@ class LoginViewController: UIViewController {
         super.viewWillDisappear(animated)
         presenter.detachView()
     }
-    
-    deinit {
-//        authenticatorError.delegate -= self
-    }
 
     @IBOutlet var smartBoxLogo: UILabel!
     @IBOutlet var userNameTextBox: UITextField!
     @IBOutlet var passwordTextBox: UITextField!
     @IBOutlet weak var loadingAnimation: UIActivityIndicatorView!
     @IBOutlet var loginButton: UIButton!
-    
-    func changeLoginButtonAvailability() {
-        if !userNameTextBox.state.isEmpty && !passwordTextBox.state.isEmpty {
-            //TODO: Change login button to enabled
-        }
-    }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         loadingAnimation.startAnimating()
