@@ -94,9 +94,10 @@ class SettingsPresenter {
         
         settingsManager.updateSettingsInDB(boxId: Int(boxId), currentWeight: Double(currentWeight), threshold: Double(threshold), productLink: productLink, success: {
             Logger.instance.logEvent(type: .login, info: "updateSettingsInDB success")
-            GlobalManager.instance.userManager.getUserInfo(success: {
+            GlobalManager.instance.userManager.getUserInfo(success: { [weak self] in
                 Logger.instance.logEvent(type: .login, info: "getUserInfo success")
-                self.view?.openBoxStateViewController()
+                self?.saveUserInfo()
+                self?.view?.openBoxStateViewController()
             }, failure: { error, response in
                 Logger.instance.logEvent(type: .login, info: "getUserInfo failed")
                 if let responseObject = response {
@@ -123,6 +124,11 @@ class SettingsPresenter {
                 }
             }
         })
+    }
+    
+    private func saveUserInfo() {
+        UserDefaults.standard.set(GlobalManager.instance.userManager.userViewModel?.email, forKey: ConstantsTitles.email)
+        UserDefaults.standard.set(GlobalManager.instance.userManager.userViewModel?.password, forKey: ConstantsTitles.password)
     }
     
     func clearInformation() {
